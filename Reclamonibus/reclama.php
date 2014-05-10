@@ -42,84 +42,137 @@
 <?php
 // define variables and set to empty values
 		
-		$element_4 = $element_3_1=$element_3_2=$element_2_1=$element_2_2=$element_2_3=$element_9 = $element_7_1 = $element_19 = $element_8 = $element_20_1 = $element_5 = $element_1_2 = $element_1_1 = "";
+		$idonibus=$textooutros = $element_3_1=$element_3_2=$element_2_1=$element_2_2=$element_2_3=$linhabus = $tipodebus = $tipodesituacao = $linhaconvbus = $gender = $email = $sobrenome = $nome = "";
 		$data = $horario = array("" , "" ,"");
+
 		
 		
 		$today = getdate();
-
 		$diadehoje=$today["mday"];
 		$mesdehoje=$today["mon"];
 		$anodehoje=$today["year"];
+		$vez=0;
 
 
-		
+
+
+
+		function verificadata($day,$today) {
+			$diadehoje=(int)$today["mday"];
+			$mesdehoje=(int)$today["mon"];
+			$anodehoje=(int)$today["year"];
+
+			$dia = (int)$day[0];
+			$mes = (int)$day[1];
+			$ano = (int)$day[2];
+			$correto;
+
+			if($ano > $anodehoje) {
+				$correto=false;
+				return $correto;
+			}
+			elseif($ano<$anodehoje) {
+				$correto=true;
+				return $correto;
+			}
+			else {
+				if($mes>$mesdehoje) {
+					$correto=false;
+					return $correto;
+				}
+				elseif($mes<$mesdehoje) {
+					$correto=true;
+					return $correto;
+				}
+				else {
+					if($dia > $diadehoje) {
+						$correto=false;
+						return $correto;
+					}
+					else {
+						$correto=true;
+						return $correto;
+					} 
+				
+				}
+			}		
+
+		}
+
+
 
 	
 	
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
    if (empty($_POST["element_1_1"])) {
-   		$element_1_1 = "";
+   		$nome = "";
     
    } else {
-     $element_1_1 = test_input($_POST["element_1_1"]);
+     $nome = test_input($_POST["element_1_1"]);
      // check if name only contains letters and whitespace
-     if (!preg_match("/^[a-zA-Z ]*$/",$element_1_1)) {
-       $element_1_1 = ""; 
+     if (!preg_match("/^[a-zA-ZãÃáÁàÀêÊéÉèÈíÍìÌôÔõÕóÓòÒúÚùÙûÛçÇºª ]+$/", 'ãÃáÁàÀ    êÊéÉèÈíÍìÌôÔõÕóÓòÒúÚùÙûÛçÇºª') ){
+       $nome = ""; 
      }
    }
    if (empty($_POST["element_1_2"])) {
-     $element_1_2 = "";
+     $sobrenome = "";
    } else {
-     $element_1_2 = test_input($_POST["element_1_2"]);
+     $sobrenome = test_input($_POST["element_1_2"]);
      // check if name only contains letters and whitespace
-     if (!preg_match("/^[a-zA-Z ]*$/",$element_1_2)) {
-       $element_1_2 = ""; 
+     if (!preg_match("/^[a-zA-Z ]*$/",$sobrenome)) {
+       $sobrenome = ""; 
      }
    }
    if (empty($_POST["element_5"])) {
-     $element_5 = "";
+     $email = "";
    } else {
-     $element_5 = test_input($_POST["element_5"]);
+     $email = test_input($_POST["element_5"]);
      // check if e-mail address syntax is valid
-     if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$element_5)) {
-       $element_5 = "";
+     if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$email)) {
+       $email = "";
      }
    }
    
    if (empty($_POST["element_4"])) {
      $comment = "";
    } else {
-     $element_4 = test_input($_POST["element_4"]);
+     $textooutros = test_input($_POST["element_4"]);
    }
 
    if (empty($_POST["element_20_1"])) {
-     $element_20_1 = "";
+     $gender = "";
    } else {
-     $element_20_1 = test_input($_POST["element_20_1"]);
+     $gender = test_input($_POST["element_20_1"]);
    }
 
    if (empty($_POST["element_19"])) {
-     $element_19 = "";
+     $tipodesituacao = "";
    } else {
-     $element_19 = test_input($_POST["element_19"]);
+     $tipodesituacao = test_input($_POST["element_19"]);
    }
    if (empty($_POST["element_7_1"])) {
-     $element_7_1 = "";
+     $tipodebus = "";
    } else {
-     $element_7_1 = test_input($_POST["element_7_1"]);
+     $tipodebus = test_input($_POST["element_7_1"]);
    }
    if (empty($_POST["element_8"])) {
-     $element_8 = "";
+     $linhaconvbus = "";
    } else {
-     $element_8 = test_input($_POST["element_8"]);
+     $linhaconvbus = test_input($_POST["element_8"]);
    }
    if (empty($_POST["element_9"])) {
-     $element_9 = "";
+     $linhabus = "";
    } else {
-     $element_9 = test_input($_POST["element_9"]);
+     $linhabus = test_input($_POST["element_9"]);
    }
    
+
+   //DANDO VALORES PRAS VARIAVEIS ANTES DO TESTE
+
+   			$data[0] = test_input($_POST["element_2_2"]);
+	 
+	 		$data[1] = test_input($_POST["element_2_1"]);
+	 		$data[2] = test_input($_POST["element_2_3"]);
    
    if ((empty($_POST["element_2_1"]))||(empty($_POST["element_2_2"])) || (empty($_POST["element_2_3"])))  {
    			$data[0] = "";
@@ -131,29 +184,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	
 
 	else {
-     	
-     		$data[0] = test_input($_POST["element_2_2"]);
+		if(!(verificadata($data,$today))) {
+			$data[0] = "";
 	 
-			$data[1] = test_input($_POST["element_2_1"]);
+		 	$data[1] = "";
+	 
+			 $data[2] = "";
+		}     
+		else {
+    	 	$data[0] = test_input($_POST["element_2_2"]);
+	 
+	 		$data[1] = test_input($_POST["element_2_1"]);
 	 		$data[2] = test_input($_POST["element_2_3"]);
-	 		}
-     	
-     		
+	 	}
+   }
    
-   if ((empty($_POST["element_3_1"]))||(empty($_POST["element_3_2"])) ) {
-    	 $horario[0] ="";
+   if (((empty($_POST["element_3_1"]))||(empty($_POST["element_3_2"])) ) || ((int)$_POST["element_3_1"] >23) || ((int)$_POST["element_3_2"]>59) ){
+     $horario[0] ="";
 	 
-		 $horario[1] = "";
+	 $horario[1] = "";
 	
    } else {
-     	$horario[0] = test_input($_POST["element_3_1"]);
+     $horario[0] = test_input($_POST["element_3_1"]);
 	 
-	 	$horario[1] = test_input($_POST["element_3_2"]);
+	 $horario[1] = test_input($_POST["element_3_2"]);
 	
 
    }
+   if (empty($_POST["element_15"])) {
+     $idonibus = "";
+   } else {
+     $idonibus = test_input($_POST["element_15"]);
+   }
    
-   
+
+
+   $vez+=1;
    
    
 }
@@ -163,6 +229,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$data = htmlspecialchars($data);
 		return $data;
 	}
+
+
+	
 ?>
 <div id="body_wrapper">
 	<div id="wrapper">
@@ -208,11 +277,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		<li id="li_1" >
 		<label class="description" for="element_1">Nome </label>
 		<span>
-			<input id="element_1_1" name= "element_1_1" class="element text" maxlength="255" size="8" value="<?php echo $element_1_1;?>"/>
+			<input id="element_1_1" name= "element_1_1" class="element text" maxlength="255" size="8" value="<?php echo $nome;?>"/>
 			<label>Nome</label>
 		</span>
 		<span>
-			<input id="element_1_2" name= "element_1_2" class="element text" maxlength="255" size="14" value="<?php echo $element_1_2;?>"/>
+			<input id="element_1_2" name= "element_1_2" class="element text" maxlength="255" size="14" value="<?php echo $sobrenome;?>"/>
 			<label>Sobrenome</label>
 		</span><p class="guidelines" id="guide_1"><small>Insira o seu nome.</small></p> 
 		</li>		
@@ -220,7 +289,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		<label class="description" for="element_5">E-mail </label>
 		
 		<div>
-			<input id="element_5" name="element_5" class="element text medium" type="text" maxlength="255" value="<?php echo $element_5;?>"/> 
+			<input id="element_5" name="element_5" class="element text medium" type="text" maxlength="255" value="<?php echo $email;?>"/> 
 		</div><p class="guidelines" id="guide_5"><small>Digite o seu e-mail.</small></p> 
 
 		
@@ -298,7 +367,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		</li>
 		</div>
 		
+		<span>
 		<div class="subir">
+		<li id="li_5" >
+		<label class="description" for="element_15">ID do ônibus </label>
+		
+		<div>
+			<input id="element_5" name="element_15" class="element text medium" type="text" maxlength="255" value="<?php echo $idonibus;?>"/> 
+		</div>
+
+		
+		</li>
+		</span>
 		<li id="li_2" >
 		<label class="description" for="element_2">Data do acontecimento </label>
 		<span>
@@ -345,7 +425,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		<li id="li_4" >
 		<label class="description" for="element_4">Descreva o ocorrido </label>
 		<div>
-			<textarea id="element_4" name="element_4" class="element textarea large" "<?php echo $element_4;?>"></textarea> 
+			<textarea id="element_4" name="element_4" class="element textarea large" "<?php echo $textooutros;?>"></textarea> 
 		</div><p class="guidelines" id="guide_4"><small>Escreva da maneira que achar necessário o ocorrido.</small></p> 
 		</div>
 		</li>
@@ -359,30 +439,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			</ul>
 		</form>	      
         
-       
-        <div class="testando">
-        <?php
+       <div class=testando>
+		<?php
 			
-			if(($element_1_1=="") || ($element_1_2=="") || ($element_5=="") || ($element_20_1=="") || ($element_19=="")||($element_9=="") || ($data[0]=="") || ($data[1]=="") || ($data[2]=="") || ($horario[0]=="") || ($horario[1]=="")) {
-				echo "Preenchimento incorreto";
+			if(($nome=="") || ($sobrenome=="") || ($email=="") || ($gender=="") || ($tipodesituacao=="")||($linhabus=="") || ($data[0]=="") || ($data[1]=="") || ($data[2]=="") || ($horario[0]=="") || ($horario[1]=="")) {
+				if($vez>0) {
+					
+					echo "<p class=resultado>";
+					echo "Preenchimento incorreto" ;
+					echo "</p>";
+				}
 			} 
+
 			else {
 				echo "<p>Your Input:</p>";
-				echo $element_1_1;
+				echo $nome;
 				echo "<br>";
-				echo $element_1_2;
+				echo $sobrenome;
 				echo "<br>";
-				echo $element_5;
+				echo $email;
 				echo "<br>";
-			echo $element_20_1;
+			echo $gender;
 			echo "<br>";
-			echo $element_19;
+			echo $tipodesituacao;
 			echo "<br>";
-			echo $element_7_1;
+			echo $tipodebus;
 			echo "<br>";
-			echo $element_8;
+			echo $linhaconvbus;
 			echo "<br>";
-			echo $element_9;
+			echo $linhabus;
 			echo "<br>";
 			//echo "data: $data[0]/$data[1]/$data[2]";
 			echo "data:";
@@ -392,21 +477,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			echo "<br>";
 			echo "horario: $horario[0]:$horario[1]";
 			echo "<br>";
-			echo "dia de hoje" ;
-			echo (int)$diadehoje ;
-			echo (int) $mesdehoje ;
-			echo (int) $anodehoje;
-			echo "<br>";
-			echo $element_4;
+		
 			
+			echo "<br>";
+			echo $textooutros;
+			echo "<br>";
+			echo "ID DO ONIBUS: $idonibus";
 		}
 			
 			
 			
 			
 	?>
-      </div>  
-        
+	</div>
         
         
         

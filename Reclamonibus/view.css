@@ -805,3 +805,14 @@ font-weight: bold;
 	top:9px;
 }
 
+.resultado {
+	border:none;
+	color:#222;
+	display:block;
+	font-size:115%;
+	font-weight:700;
+	line-height:150%;
+	padding:0 0 1px;
+	margin-left:22px;
+	color:#D11919;
+}
