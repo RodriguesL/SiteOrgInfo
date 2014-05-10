@@ -53,7 +53,7 @@
 		$diadehoje=$today["mday"];
 		$mesdehoje=$today["mon"];
 		$anodehoje=$today["year"];
-
+		$vez=0;
 
 
 
@@ -214,7 +214,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
    }
    
-   
+   $vez+=1;
    
    
 }
@@ -424,8 +424,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		<?php
 			
 			if(($nome=="") || ($sobrenome=="") || ($email=="") || ($gender=="") || ($tipodesituacao=="")||($linhaufrjbus=="") || ($data[0]=="") || ($data[1]=="") || ($data[2]=="") || ($horario[0]=="") || ($horario[1]=="")) {
-				echo "Preenchimento incorreto";
+				if($vez>0) {
+				
+					echo "Preenchimento incorreto";
+				}
 			} 
+
 			else {
 				echo "<p>Your Input:</p>";
 				echo $nome;
