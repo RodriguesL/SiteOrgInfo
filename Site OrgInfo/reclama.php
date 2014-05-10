@@ -45,8 +45,9 @@
 <?php
 // define variables and set to empty values
 		
-		$textooutros = $element_3_1=$element_3_2=$element_2_1=$element_2_2=$element_2_3=$linhaufrjbus = $tipodebus = $tipodesituacao = $linhaconvbus = $gender = $email = $sobrenome = $nome = "";
+		$idonibus=$textooutros = $element_3_1=$element_3_2=$element_2_1=$element_2_2=$element_2_3=$linhabus = $tipodebus = $tipodesituacao = $linhaconvbus = $gender = $email = $sobrenome = $nome = "";
 		$data = $horario = array("" , "" ,"");
+
 		
 		
 		$today = getdate();
@@ -163,9 +164,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
      $linhaconvbus = test_input($_POST["element_8"]);
    }
    if (empty($_POST["element_9"])) {
-     $linhaufrjbus = "";
+     $linhabus = "";
    } else {
-     $linhaufrjbus = test_input($_POST["element_9"]);
+     $linhabus = test_input($_POST["element_9"]);
    }
    
 
@@ -213,7 +214,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	
 
    }
+   if (empty($_POST["element_15"])) {
+     $idonibus = "";
+   } else {
+     $idonibus = test_input($_POST["element_15"]);
+   }
    
+
+
    $vez+=1;
    
    
@@ -359,7 +367,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		</li>
 		</div>
 		
+		<span>
 		<div class="subir">
+		<li id="li_5" >
+		<label class="description" for="element_15">ID busao </label>
+		
+		<div>
+			<input id="element_5" name="element_15" class="element text medium" type="text" maxlength="255" value="<?php echo $idonibus;?>"/> 
+		</div>
+
+		
+		</li>
+		<span>
 		<li id="li_2" >
 		<label class="description" for="element_2">Data do acontecimento </label>
 		<span>
@@ -423,10 +442,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
        <div class=testando>
 		<?php
 			
-			if(($nome=="") || ($sobrenome=="") || ($email=="") || ($gender=="") || ($tipodesituacao=="")||($linhaufrjbus=="") || ($data[0]=="") || ($data[1]=="") || ($data[2]=="") || ($horario[0]=="") || ($horario[1]=="")) {
+			if(($nome=="") || ($sobrenome=="") || ($email=="") || ($gender=="") || ($tipodesituacao=="")||($linhabus=="") || ($data[0]=="") || ($data[1]=="") || ($data[2]=="") || ($horario[0]=="") || ($horario[1]=="")) {
 				if($vez>0) {
-				
-					echo "Preenchimento incorreto";
+					
+					echo "<p class=resultado>";
+					echo "Preenchimento incorreto" ;
+					echo "</p>";
 				}
 			} 
 
@@ -446,7 +467,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			echo "<br>";
 			echo $linhaconvbus;
 			echo "<br>";
-			echo $linhaufrjbus;
+			echo $linhabus;
 			echo "<br>";
 			//echo "data: $data[0]/$data[1]/$data[2]";
 			echo "data:";
@@ -460,6 +481,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			
 			echo "<br>";
 			echo $textooutros;
+			echo "<br>";
+			echo "ID DO ONIBUS: $idonibus";
 		}
 			
 			
