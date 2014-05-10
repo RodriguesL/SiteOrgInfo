@@ -39,102 +39,173 @@
 </script>
 </head>
 <body>
+
+	
+	
 <?php
 // define variables and set to empty values
-		$nameErr = $emailErr = $genderErr = $websiteErr = "";
-		$element_4 = $element_3_1=$element_3_2=$element_2_1=$element_2_2=$element_2_3=$element_9 = $element_7_1 = $element_19 = $element_8 = $element_20_1 = $element_5 = $element_1_2 = $element_1_1 = "";
+		
+		$textooutros = $element_3_1=$element_3_2=$element_2_1=$element_2_2=$element_2_3=$linhaufrjbus = $tipodebus = $tipodesituacao = $linhaconvbus = $gender = $email = $sobrenome = $nome = "";
 		$data = $horario = array("" , "" ,"");
 		
 		
-		
-	/*
-	
-	THINGS to do:
-	
-	criar um dropdown pra causa
-	criar um radio selection pra sexo
-	tirar curso
+		$today = getdate();
+		$diadehoje=$today["mday"];
+		$mesdehoje=$today["mon"];
+		$anodehoje=$today["year"];
 
-	horario: tirar AM/PM, segundos
-	
-	*/
-	
+
+
+
+
+
+		function verificadata($day,$today) {
+			$diadehoje=(int)$today["mday"];
+			$mesdehoje=(int)$today["mon"];
+			$anodehoje=(int)$today["year"];
+
+			$dia = (int)$day[0];
+			$mes = (int)$day[1];
+			$ano = (int)$day[2];
+			$correto;
+
+			if($ano > $anodehoje) {
+				$correto=false;
+				return $correto;
+			}
+			elseif($ano<$anodehoje) {
+				$correto=true;
+				return $correto;
+			}
+			else {
+				if($mes>$mesdehoje) {
+					$correto=false;
+					return $correto;
+				}
+				elseif($mes<$mesdehoje) {
+					$correto=true;
+					return $correto;
+				}
+				else {
+					if($dia > $diadehoje) {
+						$correto=false;
+						return $correto;
+					}
+					else {
+						$correto=true;
+						return $correto;
+					} 
+				
+				}
+			}		
+
+		}
+
+
+
 	
 	
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
    if (empty($_POST["element_1_1"])) {
-     $nameErr = "Name is required";
+   		$nome = "";
+    
    } else {
-     $element_1_1 = test_input($_POST["element_1_1"]);
+     $nome = test_input($_POST["element_1_1"]);
      // check if name only contains letters and whitespace
-     if (!preg_match("/^[a-zA-Z ]*$/",$element_1_1)) {
-       $nameErr = "Only letters and white space allowed"; 
+     if (!preg_match("/^[a-zA-ZãÃáÁàÀêÊéÉèÈíÍìÌôÔõÕóÓòÒúÚùÙûÛçÇºª ]+$/", 'ãÃáÁàÀ    êÊéÉèÈíÍìÌôÔõÕóÓòÒúÚùÙûÛçÇºª') ){
+       $nome = ""; 
      }
    }
    if (empty($_POST["element_1_2"])) {
-     $nameErr = "Name is required";
+     $sobrenome = "";
    } else {
-     $element_1_2 = test_input($_POST["element_1_2"]);
+     $sobrenome = test_input($_POST["element_1_2"]);
      // check if name only contains letters and whitespace
-     if (!preg_match("/^[a-zA-Z ]*$/",$element_1_2)) {
-       $nameErr = "Only letters and white space allowed"; 
+     if (!preg_match("/^[a-zA-Z ]*$/",$sobrenome)) {
+       $sobrenome = ""; 
      }
    }
    if (empty($_POST["element_5"])) {
-     $emailErr = "Email is required";
+     $email = "";
    } else {
-     $element_5 = test_input($_POST["element_5"]);
+     $email = test_input($_POST["element_5"]);
      // check if e-mail address syntax is valid
-     if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$element_5)) {
-       $emailErr = "Invalid email format";
+     if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$email)) {
+       $email = "";
      }
    }
    
    if (empty($_POST["element_4"])) {
      $comment = "";
    } else {
-     $element_4 = test_input($_POST["element_4"]);
+     $textooutros = test_input($_POST["element_4"]);
    }
 
    if (empty($_POST["element_20_1"])) {
-     $genderErr = "Gender is required";
+     $gender = "";
    } else {
-     $element_20_1 = test_input($_POST["element_20_1"]);
+     $gender = test_input($_POST["element_20_1"]);
    }
+
    if (empty($_POST["element_19"])) {
-     $genderErr = "ocorrido is required";
+     $tipodesituacao = "";
    } else {
-     $element_19 = test_input($_POST["element_19"]);
+     $tipodesituacao = test_input($_POST["element_19"]);
    }
    if (empty($_POST["element_7_1"])) {
-     $genderErr = "Tipo de bus is required";
+     $tipodebus = "";
    } else {
-     $element_7_1 = test_input($_POST["element_7_1"]);
+     $tipodebus = test_input($_POST["element_7_1"]);
    }
    if (empty($_POST["element_8"])) {
-     $genderErr = "Tipo de bus is required";
+     $linhaconvbus = "";
    } else {
-     $element_8 = test_input($_POST["element_8"]);
+     $linhaconvbus = test_input($_POST["element_8"]);
    }
    if (empty($_POST["element_9"])) {
-     $genderErr = "Tipo de bus is required";
+     $linhaufrjbus = "";
    } else {
-     $element_9 = test_input($_POST["element_9"]);
+     $linhaufrjbus = test_input($_POST["element_9"]);
    }
    
-   
-   if ((empty($_POST["element_2_1"]))||(empty($_POST["element_2_2"])) || (empty($_POST["element_2_3"]))) {
-     $dateErr = "dia,mes ,ano is required";
-   } else {
-     $data[0] = test_input($_POST["element_2_2"]);
-	 
-	 $data[1] = test_input($_POST["element_2_1"]);
-	 $data[2] = test_input($_POST["element_2_3"]);
 
+   //DANDO VALORES PRAS VARIAVEIS ANTES DO TESTE
+
+   			$data[0] = test_input($_POST["element_2_2"]);
+	 
+	 		$data[1] = test_input($_POST["element_2_1"]);
+	 		$data[2] = test_input($_POST["element_2_3"]);
+   
+   if ((empty($_POST["element_2_1"]))||(empty($_POST["element_2_2"])) || (empty($_POST["element_2_3"])))  {
+   			$data[0] = "";
+	 
+		 	$data[1] = "";
+	 
+			 $data[2] = "";
+	}
+	
+
+	else {
+		if(!(verificadata($data,$today))) {
+			$data[0] = "";
+	 
+		 	$data[1] = "";
+	 
+			 $data[2] = "";
+		}     
+		else {
+    	 	$data[0] = test_input($_POST["element_2_2"]);
+	 
+	 		$data[1] = test_input($_POST["element_2_1"]);
+	 		$data[2] = test_input($_POST["element_2_3"]);
+	 	}
    }
    
-   if ((empty($_POST["element_3_1"]))||(empty($_POST["element_3_2"])) ) {
-     $timeErr = "Hora,min is required";
+   if (((empty($_POST["element_3_1"]))||(empty($_POST["element_3_2"])) ) || ((int)$_POST["element_3_1"] >23) || ((int)$_POST["element_3_2"]>59) ){
+     $horario[0] ="";
+	 
+	 $horario[1] = "";
+	
    } else {
      $horario[0] = test_input($_POST["element_3_1"]);
 	 
@@ -198,11 +269,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		<li id="li_1" >
 		<label class="description" for="element_1">Nome </label>
 		<span>
-			<input id="element_1_1" name= "element_1_1" class="element text" maxlength="255" size="8" value="<?php echo $element_1_1;?>"/>
+			<input id="element_1_1" name= "element_1_1" class="element text" maxlength="255" size="8" value="<?php echo $nome;?>"/>
 			<label>Nome</label>
 		</span>
 		<span>
-			<input id="element_1_2" name= "element_1_2" class="element text" maxlength="255" size="14" value="<?php echo $element_1_2;?>"/>
+			<input id="element_1_2" name= "element_1_2" class="element text" maxlength="255" size="14" value="<?php echo $sobrenome;?>"/>
 			<label>Sobrenome</label>
 		</span><p class="guidelines" id="guide_1"><small>Insira o seu nome.</small></p> 
 		</li>		
@@ -210,7 +281,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		<label class="description" for="element_5">E-mail </label>
 		
 		<div>
-			<input id="element_5" name="element_5" class="element text medium" type="text" maxlength="255" value="<?php echo $element_5;?>"/> 
+			<input id="element_5" name="element_5" class="element text medium" type="text" maxlength="255" value="<?php echo $email;?>"/> 
 		</div><p class="guidelines" id="guide_5"><small>Digite o seu e-mail.</small></p> 
 
 		
@@ -335,7 +406,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		<li id="li_4" >
 		<label class="description" for="element_4">Descreva o ocorrido </label>
 		<div>
-			<textarea id="element_4" name="element_4" class="element textarea large" "<?php echo $element_4;?>"></textarea> 
+			<textarea id="element_4" name="element_4" class="element textarea large" "<?php echo $textooutros;?>"></textarea> 
 		</div><p class="guidelines" id="guide_4"><small>Escreva da maneira que achar necessário o ocorrido.</small></p> 
 		</div>
 		</li>
@@ -349,9 +420,56 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			</ul>
 		</form>	      
         
-       
+       <div class=testando>
+		<?php
+			
+			if(($nome=="") || ($sobrenome=="") || ($email=="") || ($gender=="") || ($tipodesituacao=="")||($linhaufrjbus=="") || ($data[0]=="") || ($data[1]=="") || ($data[2]=="") || ($horario[0]=="") || ($horario[1]=="")) {
+				echo "Preenchimento incorreto";
+			} 
+			else {
+				echo "<p>Your Input:</p>";
+				echo $nome;
+				echo "<br>";
+				echo $sobrenome;
+				echo "<br>";
+				echo $email;
+				echo "<br>";
+			echo $gender;
+			echo "<br>";
+			echo $tipodesituacao;
+			echo "<br>";
+			echo $tipodebus;
+			echo "<br>";
+			echo $linhaconvbus;
+			echo "<br>";
+			echo $linhaufrjbus;
+			echo "<br>";
+			//echo "data: $data[0]/$data[1]/$data[2]";
+			echo "data:";
+			echo (int)$data[0];
+			echo (int)$data[1];
+			echo (int)$data[2];
+			echo "<br>";
+			echo "horario: $horario[0]:$horario[1]";
+			echo "<br>";
+		
+			
+			echo "<br>";
+			echo $textooutros;
+		}
+			
+			
+			
+			
+	?>
+	</div>
         
         
+
+
+
+
+
         
         
         
