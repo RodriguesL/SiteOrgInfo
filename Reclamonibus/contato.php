@@ -26,9 +26,10 @@
         
         <div id="middle">
             <div id="mid_left">
-                <div id="mid_title">Este é o nosso site de ônibus</div>
-                <p>Este parágrafo diz algo muito importante sobre o nosso site.</p>
-				<p>E esse seduz o usuário a fazer todas as coisas que a gente quer que ele faça.</p>
+                <div id="mid_title">Este é o nosso portal de reclamações.</div>
+                <p>Cansado de sair esgotado da aula e ainda ter que voltar pra casa em pé?</p
+                >
+				<p>Cansado de motoristas que te fazem se sentir no Rally Paris-Dakar?</p>
              
             </div>
             <img src="images/bus.png" alt="bus" />
