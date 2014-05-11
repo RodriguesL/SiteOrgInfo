@@ -47,6 +47,7 @@ if (!isset($_POST["submit"])) {
   ?>
   <form method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
   Remetente: <input type="text" name="remetente"><br>
+  E-mail: <input type="text" name="email"><br>
   Assunto: <input type="text" name="assunto"><br>
   Mensagem: <textarea rows="10" cols="40" name="mensagem"></textarea><br>
   <input type="submit" name="submit" value="Enviar">
@@ -56,12 +57,13 @@ if (!isset($_POST["submit"])) {
   // Check if the "from" input field is filled out
   if (isset($_POST["remetente"])) {
     $from = $_POST["remetente"]; // sender
+	$email = $_POST["email"];
     $subject = $_POST["assunto"];
     $message = $_POST["mensagem"];
     // message lines should not exceed 70 characters (PHP rule), so wrap it
     $message = wordwrap($message, 70);
     // send mail
-    mail("lucas.nunes95@gmail.com",$subject,$message, "Remetente: $from\n");
+    mail("lucas.nunes95@gmail.com",$subject,"Remetente: $from ($email)\n\n" . "Mensagem: " .  $message, "Remetente: $from\n");
     echo "Obrigado por seu feedback!";
   }
 }
