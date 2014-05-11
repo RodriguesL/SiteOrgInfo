@@ -52,8 +52,9 @@
   <?php 
 // the user has submitted the form
   // Check if the "from" input field is filled out
+  $contador=0;
   if (isset($_POST["submit"])) {
-  if (isset($_POST["remetente"])) {
+  if (!empty($_POST["remetente"])&&!empty($_POST["email"])&&!empty($_POST["mensagem"])&&preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$_POST["email"])&&$contador!=1) {
     $from = $_POST["remetente"]; // sender
 	$email = $_POST["email"];
     $subject = $_POST["assunto"];
@@ -63,7 +64,16 @@
     // send mail
     mail("reclamonibus@gmail.com",$subject,"Remetente: $from ($email)\n\n" . "Mensagem: " .  $message, "Nome: $from\n");
     echo "Obrigado por seu feedback!";
+    $contador=1;
 
+  }
+  else{
+  	if($contador==0){
+  		echo "Preenchimento incorreto" ;
+  	}
+  	else{
+  		$contador=0;
+  	}
   }
 }
 ?>
