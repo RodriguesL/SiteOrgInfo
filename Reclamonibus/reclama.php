@@ -155,16 +155,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    } else {
      $tipodebus = test_input($_POST["element_7_1"]);
    }
-   if (empty($_POST["element_8"])) {
-     $linhaconvbus = "";
-   } else {
-     $linhaconvbus = test_input($_POST["element_8"]);
-   }
-   if (empty($_POST["element_9"])) {
+   if ((empty($_POST["element_8"])) && (empty($_POST["element_9"]))) {
      $linhabus = "";
-   } else {
-     $linhabus = test_input($_POST["element_9"]);
+   } 
+   else {
+
+   	 if (empty($_POST["element_9"])) {
+
+   		  $linhabus = test_input($_POST["element_8"]);
+   		}
+   	 else {
+   	 	 $linhabus = test_input($_POST["element_9"]);
+   	 }	
    }
+
+
+   
    
 
    //DANDO VALORES PRAS VARIAVEIS ANTES DO TESTE
@@ -450,7 +456,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 					echo "</p>";
 				}
 			} 
-
+			/*
 			else {
 				echo "<p>Your Input:</p>";
 				echo $nome;
@@ -485,7 +491,93 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			echo "ID DO ONIBUS: $idonibus";
 		}
 			
-			
+		*/
+		else{
+		$dom = new DOMDocument();
+		$temp=0;
+		//Nesse ponto, informamos para o objeto que não queremos espaços em branco no documento
+		$local= 'xml/reclamacoes' . $temp .'.xml';
+		while(file_exists($local)){
+			$temp++;
+			$local= 'xml/reclamacoes' . $temp .'.xml';
+		}
+		 $dom->formatOutput = true;
+		//Pronto! Configurações inicias realizadas, agora partiremos para a criação dos elementos que compõe a árvore do documento XML
+		//Criação do elemento root (elemento pai)
+		$root = $dom->createElement('reclamcao');
+		 
+		//Vamos criar o elemento nodeOne, conforme o exemplo anterior
+		$nodeOne = $dom->createElement('nome');
+		 
+		//Agora o elemento nodeTwo
+		$nodeTwo = $dom->createElement('sobrenome');
+		$nodeThree= $dom->createElement('email');
+		$nodeFour = $dom->createElement('gender');
+		$nodeFive= $dom->createElement('tipodesituacao');
+		$nodeSix = $dom->createElement('linhabus');
+		$nodeSeven= $dom->createElement('idonibus');
+		$nodeEight = $dom->createElement('dia');
+		$nodeNine= $dom->createElement('mes');
+		$nodeTen = $dom->createElement('ano');
+		$nodeEleven= $dom->createElement('hora');
+		$nodeTwelve= $dom->createElement('minuto');
+		 
+		//criados os elementos, vamos adicionar um valor para cada um deles
+		$nodeOneTxt = $dom->createTextNode($nome);
+		$nodeTwoTxt = $dom->createTextNode($sobrenome);
+		$nodeThreeTxt= $dom->createTextNode($email);
+		$nodeFourTxt = $dom->createTextNode($gender);
+		$nodeFiveTxt= $dom->createTextNode($tipodesituacao);
+		$nodeSixTxt = $dom->createTextNode($linhabus);
+		$nodeSevenTxt= $dom->createTextNode($idonibus);
+		$nodeEightTxt = $dom->createTextNode($data[0]);
+		$nodeNineTxt= $dom->createTextNode($data[1]);
+		$nodeTenTxt = $dom->createTextNode($data[2]);
+		$nodeElevenTxt= $dom->createTextNode($horario[0]);
+		$nodeTwelveTxt= $dom->createTextNode($horario[1]);
+		 
+		
+		$nodeOne->appendChild($nodeOneTxt);
+		$nodeTwo->appendChild($nodeTwoTxt);
+		$nodeThree->appendChild($nodeThreeTxt);
+		$nodeFour->appendChild($nodeFourTxt);
+		$nodeFive->appendChild($nodeFiveTxt);
+		$nodeSix->appendChild($nodeSixTxt);
+		$nodeSeven->appendChild($nodeSevenTxt);
+		$nodeEight->appendChild($nodeEightTxt);
+		$nodeNine->appendChild($nodeNineTxt);
+		$nodeTen->appendChild($nodeTenTxt);
+		$nodeEleven->appendChild($nodeElevenTxt);
+		$nodeTwelve->appendChild($nodeTwelveTxt);
+
+
+
+		$root->appendChild($nodeOne);
+		$root->appendChild($nodeTwo);
+		$root->appendChild($nodeThree);
+		$root->appendChild($nodeFour);
+		$root->appendChild($nodeFive);
+		$root->appendChild($nodeSix);
+		$root->appendChild($nodeSeven);
+		$root->appendChild($nodeEight);
+		$root->appendChild($nodeNine);
+		$root->appendChild($nodeTen);
+		$root->appendChild($nodeEleven);
+		$root->appendChild($nodeTwelve);
+
+		$dom->appendChild($root);
+		 
+		//Dessa forma, dissemos que os elementos nodeOne e nodeTwo são filhos do elemento root, isto é, estão dentro de root ou um nível abaixo de root.
+		 
+		//Para imprimir na tela, utilizamos o método saveXML()
+		 
+		//Por fim, para salvarmos o documento, utilizamos o método save()
+		$dom->save($local);
+	}
+
+
+
+
 			
 			
 	?>
