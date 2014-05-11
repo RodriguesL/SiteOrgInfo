@@ -12,10 +12,10 @@
     //DEFININDO VARIAVEIS QUE RECEBERÃO OS DADOS ESTATISTICOS
     $qtdhorarioin=array(0,0,0);
     $qtdhorarioex=array(0,0,0);     //(MANHA, TARDE,NOITE)
-    $qtdlinhaufrj=array(0,0,0,0);
-    $qtdlinhaex=array(0,0,0,0,0);  //(COPPEAD,VILA RESIDENCIAL, ESTACAO,ALOJAMENTO)
-    $qtdrecex=array(0,0,0,0);
-    $qtdrecin=array(0,0,0,0);
+    $qtdlinhaufrj=array(0,0,0,0); 
+    $qtdlinhaex=array(0,0,0,0,0,0,0,0,0);  
+    $qtdrecex=array(0,0,0,0,0,0,0);
+    $qtdrecin=array(0,0,0,0,0,0,0);
     $tipodebus="vazio";
     $teste=0;
 
@@ -49,7 +49,7 @@
                         
                           $tipo=$Node->nodeValue;
                           //INTERNO
-
+                          if($tipodebus=="interno") {
                         switch ((int)$tipo) {
                           case 1:
                             $qtdrecin[0]+=1;
@@ -64,7 +64,15 @@
                           case 4:
                             $qtdrecin[3]+=1;
                             break;
-
+                          case 5:
+                            $qtdrecin[4]+=1;
+                            break;
+                          case 6:
+                            $qtdrecin[5]+=1;
+                            break;    
+                          case 7:
+                            $qtdrecin[6]+=1;
+                            break;  
 
                           default:
                             # code...
@@ -72,6 +80,7 @@
                             break;
                         }
                       }
+                    }  
                      if($tipodebus=="interno"){
                      	if($Node->nodeName=="linhabus") {
                         
@@ -143,6 +152,13 @@
                           case 4:
                             $qtdrecex[3]+=1;
                             break;
+                          case 5;
+                            $qtdrecex[4]+=1;
+                            break;
+                          case 6:
+                            $qtdrecex[5]+=1;
+                          case 7:
+                            $qtdrecex[6]+=1;      
 
 
                           default:
@@ -169,7 +185,22 @@
                           case 4:
                             $qtdlinhaex[3]+=1;
                             break;
-
+                           case 5:
+                            $qtdlinhaex[4]+=1;
+                            break;
+                          case 6:
+                            $qtdlinhaex[5]+=1;
+                            break;
+                          case 7:
+                            $qtdlinhaex[6]+=1;
+                            break;
+                          case 8:
+                            $qtdlinhaex[7]+=1;
+                            break;      
+                          case 9:
+                            $qtdlinhaex[8]+=1;
+                            break;  
+    
 
                           default:
                             # code...
@@ -225,7 +256,16 @@
       	var qtd616 = <?php echo json_encode($qtdlinhaex[1]); ?>; 
         var qtd485 = <?php echo json_encode($qtdlinhaex[0]); ?>; 
         var qtd410 = <?php echo json_encode($qtdlinhaex[3]); ?>; 
-        var qtd761 = <?php echo json_encode($qtdlinhaex[2]); ?>; 
+        var qtd761 = <?php echo json_encode($qtdlinhaex[2]); ?>;
+        var qtd111c= <?php echo json_encode($qtdlinhaex[4]); ?>;
+        var qtd945= <?php echo json_encode($qtdlinhaex[5]); ?>;
+        var qtd486= <?php echo json_encode($qtdlinhaex[6]); ?>;
+        var qtdpdbbolada = <?php echo json_encode($qtdlinhaex[7]); ?>;
+        var qtd905 = <?php echo json_encode($qtdlinhaex[8]); ?>;
+
+
+
+
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Linhas de Onibus');
         data.addColumn('number', 'Quantidade de Reclamções');
@@ -233,7 +273,13 @@
           ['485', qtd485],
           ['913/616', qtd616],
           ['761', qtd761],
-          ['410T', qtd410]
+          ['410T/420T', qtd410],
+          ['111C', qtd111c],
+          ['945', qtd945],
+          ['486', qtd486],
+          ['322/324/326/328',qtdpdbbolada],
+          ['905' , qtd905]
+
         ]);
 
         var options = { 
@@ -297,6 +343,11 @@
         var tipo2 = <?php echo json_encode( $qtdrecex[1]); ?>; 
         var tipo3 = <?php echo json_encode( $qtdrecex[2]); ?>; 
         var tipo4 = <?php echo json_encode( $qtdrecex[3]); ?>; 
+        var tipo5 = <?php echo json_encode( $qtdrecex[4]); ?>;
+        var tipo6 = <?php echo json_encode( $qtdrecex[5]); ?>;
+        var tipo7 = <?php echo json_encode( $qtdrecex[6]); ?>;
+
+
 
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Motivo de Reclamação');
@@ -305,7 +356,10 @@
           ['Superlotação', tipo1],
           ['Imprudencia do Motorista', tipo2],
           ['Trajeto Incorreto', tipo3],
-          ['Outros', tipo4],
+          ['Motorista não atendeu ao pedido de embarque/desembarque', tipo5],
+          ['Cancelamento da viagem em virtude de problemas mecânicos no ônibus',tipo6],
+          ['Descumprimento de horários',tipo7],
+          ['Outros', tipo4]
         ]);
 
         var options = { 
@@ -329,6 +383,10 @@
         var tipo2 = <?php echo json_encode( $qtdrecin[1]); ?>; 
         var tipo3 = <?php echo json_encode( $qtdrecin[2]); ?>; 
         var tipo4 = <?php echo json_encode( $qtdrecin[3]); ?>; 
+        var tipo5 = <?php echo json_encode( $qtdrecin[4]); ?>;
+        var tipo6 = <?php echo json_encode( $qtdrecin[5]); ?>;
+        var tipo7 = <?php echo json_encode( $qtdrecin[6]); ?>;
+
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Motivo de Reclamação');
         data.addColumn('number', 'Quantidade de Reclamções');
@@ -336,6 +394,9 @@
           ['Superlotação', tipo1],
           ['Imprudencia do Motorista', tipo2],
           ['Trajeto Incorreto', tipo3],
+          ['Motorista não atendeu ao pedido de embarque/desembarque', tipo5],
+          ['Cancelamento da viagem em virtude de problemas mecânicos no ônibus',tipo6],
+          ['Descumprimento de horários',tipo7],
           ['Outros', tipo4],
         ]);
 
@@ -436,13 +497,14 @@
         </div><!-- end of header -->
         
         <div id="middle">
-            <div id="mid_left">
+           <div id="mid_left">
                 <div id="mid_title">Este é o nosso portal de reclamações.</div>
                 <p>Cansado de sair esgotado da aula e ainda ter que voltar pra casa em pé?</p
                 >
 				<p>Cansado de motoristas que te fazem se sentir no Rally Paris-Dakar?</p>
              
-            </div>            <img src="images/bus.png" alt="bus" />
+            </div>
+            <img src="images/bus.png" alt="bus" />
         </div> <!-- end of middle -->
          <div id="graf_wrapper">
              <h2>Ônibus</h2>

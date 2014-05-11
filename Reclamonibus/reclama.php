@@ -255,7 +255,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div><!-- end of header -->
         
         <div id="middle">
-            <div id="mid_left">
+           <div id="mid_left">
                 <div id="mid_title">Este é o nosso portal de reclamações.</div>
                 <p>Cansado de sair esgotado da aula e ainda ter que voltar pra casa em pé?</p
                 >
@@ -323,7 +323,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				<option value="1" >Superlotação</option>
 				<option value="2" >Imprudência do motorista</option>
 				<option value="3" >Trajeto incorreto</option>
+				<option value="5"> Motorista não atendeu ao pedido de embarque/desembarque </option>
+				<option value="6" >Cancelamento da viagem em virtude de problemas mecânicos no ônibus </option>
+				<option value="7">Descumprimento de horários </option>
 				<option value="4" >Outros</option>
+
+
 
 			</select>
 			</div><p class="guidelines" id="guide_8"><small>Marque o tipo do ocorrido.</small></p> 
@@ -348,11 +353,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		<label class="description" for="element_8">Linhas Convencionais </label>
 		<div>
 		<select class="element select large" id="element_8" name="element_8"> 
-			<option value="0" selected="selected"></option>
-			<option value="1" >485 - PENHA X GENERAL OSÓRIO(VIA FUNDAO)</option>
-			<option value="2" >616/913 - FUNDÃO X NOVA AMÉRICA(DEL CASTILHO)</option>
-			<option value="3" >761D - CHARITAS X GIG(VIA FUNDAO)</option>
-			<option value="4" >4XX T - Baixada Fluminense x TERMINAL ALVORADA</option>
+			<option value="" selected="selected"></option>
+			<option value="1" >485 - PENHA X GENERAL OSÓRIO (VIA FUNDAO)</option>
+			<option value="2" >616/913 - FUNDÃO X NOVA AMÉRICA (DEL CASTILHO)</option>
+			<option value="3" >761D - CHARITAS X GIG (VIA FUNDAO)</option>
+			<option value="4" >410T/420T - BAIXADA FLUMINENSE x TERMINAL ALVORADA</option>
+			<option value="5" >111C - DUQUE DE CAXIAS X CENTRAL </option>
+			<option value="6" >945 - PAVUNA X CIDADE UNIVERSITÁRIA </option>
+			<option value="7" >486 - FUNDAO x GENERAL OSÓRIO (VIA AV.BRASIL) </option>
+			<option value="8" >322/324/326/328 - CASTELO X ILHA DO GOVERNADOR (VIA UFRJ) </option>
+			<option value="9" >905 - BONSUCESSO X IRAJÁ (VIA CIDADE UNIVERSITÁRIA) </option>
+
 
 		</select>
 		</div><p class="guidelines" id="guide_8"><small>Selecione a linha de onibus, clicando na lista e selecionando a mesma em seguida.</small></p> 
