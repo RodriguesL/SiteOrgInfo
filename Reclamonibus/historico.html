@@ -5,6 +5,188 @@
 
 <link href="style.css" rel="stylesheet" type="text/css" />
 
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+
+      google.load('visualization', '1.0', {'packages':['corechart']});
+ 
+      google.setOnLoadCallback(OnibusExterno);
+	  google.setOnLoadCallback(OnibusInterno);
+	  google.setOnLoadCallback(ReclamacaoExterno);
+	  google.setOnLoadCallback(ReclamacaoInterno);
+	  google.setOnLoadCallback(HorarioExterno);
+	  google.setOnLoadCallback(HorarioInterno);
+
+      function OnibusExterno() {
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Linhas de Onibus');
+        data.addColumn('number', 'Quantidade de Reclamções');
+        data.addRows([
+          ['616', 3],
+          ['913', 1],
+          ['485', 1],
+          ['696', 1],
+          ['410T', 2]
+        ]);
+
+        var options = { 
+			title:'Externos',
+			titleTextStyle:{color: '#989898', fontSize: 20, bold:false},
+			width:400,
+        	height:400,
+			is3D: true,
+			chartArea:{width:"100%"},
+			legend:{
+				position:'right',
+				alignment:'center'},
+			
+			};
+
+        var chart = new google.visualization.PieChart(document.getElementById('OnibusExterno'));
+        chart.draw(data, options);
+      }
+	  function OnibusInterno() {
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Linhas de Onibus');
+        data.addColumn('number', 'Quantidade de Reclamções');
+        data.addRows([
+          ['COPPEAD', 3],
+          ['Vila Residencial', 1],
+          ['Estação da UFRJ', 1],
+          ['Alojamento', 1],
+        ]);
+
+        var options = { 
+			title:'Internos',
+			titleTextStyle:{color: '#989898', fontSize: 20, bold:false},
+			chartArea:{width:"100%"},
+			width:400,
+        	height:400,
+			is3D: true,
+			legend:{
+				position:'right',
+				alignment:'center'},
+			
+			};
+
+        var chart = new google.visualization.PieChart(document.getElementById('OnibusInterno'));
+        chart.draw(data, options);
+      }
+	  
+	  
+	  function ReclamacaoExterno() {
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Motivo de Reclamação');
+        data.addColumn('number', 'Quantidade de Reclamções');
+        data.addRows([
+          ['Superlotação', 3],
+          ['Imprudencia do Motorista', 1],
+          ['Trajeto Incorreto', 1],
+          ['Outros', 1],
+        ]);
+
+        var options = { 
+			title:'Externos',
+			titleTextStyle:{color: '#989898', fontSize: 20, bold:false},
+			chartArea:{width:"100%"},
+			width:400,
+        	height:400,
+			is3D: true,
+			legend:{
+				position:'right',
+				alignment:'center'},
+			
+			};
+
+        var chart = new google.visualization.PieChart(document.getElementById('ReclamacaoExterno'));
+        chart.draw(data, options);
+      }
+	  function ReclamacaoInterno() {
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Motivo de Reclamação');
+        data.addColumn('number', 'Quantidade de Reclamções');
+        data.addRows([
+          ['Superlotação', 3],
+          ['Imprudencia do Motorista', 1],
+          ['Trajeto Incorreto', 1],
+          ['Outros', 1],
+        ]);
+
+        var options = { 
+			title:'Internos',
+			titleTextStyle:{color: '#989898', fontSize: 20, bold:false},
+			chartArea:{width:"100%"},
+			width:400,
+        	height:400,
+			is3D: true,
+			legend:{
+				position:'right',
+				alignment:'center'},
+			
+			};
+
+        var chart = new google.visualization.PieChart(document.getElementById('ReclamacaoInterno'));
+        chart.draw(data, options);
+      }
+	  function HorarioExterno() {
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Horario da Reclamação');
+        data.addColumn('number', 'Quantidade de Reclamções');
+        data.addRows([
+          ['Manhã', 3],
+          ['Tarde', 1],
+          ['Noite', 1],
+        ]);
+
+        var options = { 
+			title:'Externos',
+			titleTextStyle:{color: '#989898', fontSize: 20, bold:false},
+			chartArea:{width:"100%"},
+			width:400,
+        	height:400,
+			is3D: true,
+			legend:{
+				position:'right',
+				alignment:'center'},
+			
+			};
+
+        var chart = new google.visualization.PieChart(document.getElementById('HorarioExterno'));
+        chart.draw(data, options);
+      }
+	  function HorarioInterno() {
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Horario da Reclamação');
+        data.addColumn('number', 'Quantidade de Reclamções');
+        data.addRows([
+          ['Manhã', 3],
+          ['Tarde', 1],
+          ['Noite', 1],
+        ]);
+
+        var options = { 
+			title:'Internos',
+			titleTextStyle:{color: '#989898', fontSize: 20, bold:false},
+			chartArea:{width:"100%"},
+			width:400,
+        	height:400,
+			is3D: true,
+			legend:{
+				position:'right',
+				alignment:'center'},
+			
+			};
+
+        var chart = new google.visualization.PieChart(document.getElementById('HorarioInterno'));
+        chart.draw(data, options);
+      }
+    </script>
 </head>
 <body>
 
@@ -32,13 +214,33 @@
             </div>
             <img src="images/bus.png" alt="bus" />
         </div> <!-- end of middle -->
-        
-        
-        
-        
-        
-        
-          <!--ESCREVA O SCRIPT AQUI-->
+         <div id="graf_wrapper">
+             <h2>Ônibus</h2>
+             <div id="graf_esq">
+          	<div id="OnibusExterno"></div>
+			</div>
+            <div id="graf_dir">
+            <div id="OnibusInterno"></div>
+			</div> 
+        </div>    
+         <div id="graf_wrapper">
+             <h2>Reclamações</h2>
+             <div id="graf_esq">
+          	<div id="ReclamacaoExterno"></div>
+			</div>
+            <div id="graf_dir">
+            <div id="ReclamacaoInterno"></div>
+			</div> 
+        </div>     
+      <div id="graf_wrapper">
+             <h2>Horários</h2>
+             <div id="graf_esq">
+          	<div id="HorarioExterno"></div>
+			</div>
+            <div id="graf_dir">
+            <div id="HorarioInterno"></div>
+			</div> 
+        </div>     
         
         
        
@@ -52,7 +254,9 @@
         
         
         
-  </div>       
+ 
+  </div>  
+</div>     
 <div id="footer_wrapper">
     <div id="footer">
        Feito por Zueira iLtda

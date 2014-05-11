@@ -192,6 +192,21 @@ h6 { font-size: 12px; margin: 0 0 5px; padding: 0; }
 	float: right;
 	padding: 25px;
 	}
+#graf_wrapper{
+	
+	width: 960px;
+	padding: 38px 10px 0;
+	margin: 0 auto;
+	}
+#graf_esq{
+	float: left;
+	padding: 25px;
+}
+#graf_dir{
+	float: right;
+	padding: 27px;
+	
+}
 #contact_form form .input_field { 
 	width: 270px; 
 	padding: 5px; 
