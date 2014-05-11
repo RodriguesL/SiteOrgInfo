@@ -249,7 +249,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   <li><a href="index.html" >Home</a></li>
                   <li><a href="reclama.php"class="current">Reclame Aqui</a></li>
                   <li><a href="historico.html">Estatísticas</a></li>
-                  <li><a href="contato.html" class="last">Contato</a></li>
+                  <li><a href="contato.php" class="last">Contato</a></li>
                 </ul>
             </div> <!-- end of menu -->
         </div><!-- end of header -->
