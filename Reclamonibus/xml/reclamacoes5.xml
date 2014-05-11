@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<reclamacao>
+  <tipodebus>convencional</tipodebus>
+  <nome>Danie</nome>
+  <sobrenome>auhdsas</sobrenome>
+  <email>asdabshd@gmail.com</email>
+  <gender>masculino</gender>
+  <tipodesituacao>2</tipodesituacao>
+  <linhabus>2</linhabus>
+  <idonibus>123</idonibus>
+  <dia>1</dia>
+  <mes>1</mes>
+  <ano>1</ano>
+  <hora>1</hora>
+  <minuto>1</minuto>
+</reclamacao>

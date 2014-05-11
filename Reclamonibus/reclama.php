@@ -248,7 +248,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <ul>
                   <li><a href="index.html" >Home</a></li>
                   <li><a href="reclama.php"class="current">Reclame Aqui</a></li>
-                  <li><a href="historico.html">Estatísticas</a></li>
+                  <li><a href="historico.php">Estatísticas</a></li>
                   <li><a href="contato.html" class="last">Contato</a></li>
                 </ul>
             </div> <!-- end of menu -->
@@ -504,7 +504,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		 $dom->formatOutput = true;
 		//Pronto! Configurações inicias realizadas, agora partiremos para a criação dos elementos que compõe a árvore do documento XML
 		//Criação do elemento root (elemento pai)
-		$root = $dom->createElement('reclamcao');
+		$root = $dom->createElement('reclamacao');
 		 
 		//Vamos criar o elemento nodeOne, conforme o exemplo anterior
 		$nodeOne = $dom->createElement('nome');
@@ -521,6 +521,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$nodeTen = $dom->createElement('ano');
 		$nodeEleven= $dom->createElement('hora');
 		$nodeTwelve= $dom->createElement('minuto');
+		$node1= $dom->createElement('tipodebus');
 		 
 		//criados os elementos, vamos adicionar um valor para cada um deles
 		$nodeOneTxt = $dom->createTextNode($nome);
@@ -535,6 +536,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$nodeTenTxt = $dom->createTextNode($data[2]);
 		$nodeElevenTxt= $dom->createTextNode($horario[0]);
 		$nodeTwelveTxt= $dom->createTextNode($horario[1]);
+		$node1Txt=$dom->createTextNode($tipodebus);
 		 
 		
 		$nodeOne->appendChild($nodeOneTxt);
@@ -549,9 +551,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$nodeTen->appendChild($nodeTenTxt);
 		$nodeEleven->appendChild($nodeElevenTxt);
 		$nodeTwelve->appendChild($nodeTwelveTxt);
+		$node1->appendChild($node1Txt);
 
 
-
+		$root->appendChild($node1);
 		$root->appendChild($nodeOne);
 		$root->appendChild($nodeTwo);
 		$root->appendChild($nodeThree);
@@ -564,6 +567,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$root->appendChild($nodeTen);
 		$root->appendChild($nodeEleven);
 		$root->appendChild($nodeTwelve);
+		
 
 		$dom->appendChild($root);
 		 

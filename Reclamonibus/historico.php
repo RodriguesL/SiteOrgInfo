@@ -10,10 +10,14 @@
 <?php
     
     //DEFININDO VARIAVEIS QUE RECEBERÃO OS DADOS ESTATISTICOS
-    $qtdhorario=array(0,0,0);     //(MANHA, TARDE,NOITE)
-    $qtdlinhaufrj=array(0,0,0,0);   //(COPPEAD,VILA RESIDENCIAL, ESTACAO,ALOJAMENTO)
+    $qtdhorarioin=array(0,0,0);
+    $qtdhorarioex=array(0,0,0);     //(MANHA, TARDE,NOITE)
+    $qtdlinhaufrj=array(0,0,0,0);
+    $qtdlinhaex=array(0,0,0,0,0);  //(COPPEAD,VILA RESIDENCIAL, ESTACAO,ALOJAMENTO)
+    $qtdrecex=array(0,0,0,0);
+    $qtdrecin=array(0,0,0,0);
     $tipodebus="vazio";
-
+    $teste=0;
 
 
 
@@ -24,20 +28,53 @@
      */
     $DOMDocument->preserveWhiteSpace = false;  
     // então finalmente carrego a string do XML .. 
-    $local= 'xml/reclamacoes0.xml';
+    $temp=0;
+		//Nesse ponto, informamos para o objeto que não queremos espaços em branco no documento
+		$local= 'xml/reclamacoes' . $temp .'.xml';
+		while(file_exists($local)){
+			
+		
     $DOMDocument->load($local );
 
     
    foreach( $DOMDocument->getElementsByTagName( 'reclamacao' ) as $Nodes ){
+   		
              foreach( $Nodes->childNodes as $Node ){
                       //VERIFICANDO O TIPO DE LINHA
                       if($Node->nodeName=="tipodebus") {
                         $tipodebus=$Node->nodeValue;
 
-                     
-                     }
+                      }
+                      	if($Node->nodeName=="tipodesituacao") {
+                        
+                          $tipo=$Node->nodeValue;
+                          //INTERNO
 
-                     if(($tipodebus=="0")&&($Node->nodeName=="linhabus")) {
+                        switch ((int)$tipo) {
+                          case 1:
+                            $qtdrecin[0]+=1;
+                            # code...
+                            break;
+                          case 2:
+                            $qtdrecin[1]+=1;
+                            break;
+                          case 3:
+                            $qtdrecin[2]+=1;
+                            break;
+                          case 4:
+                            $qtdrecin[3]+=1;
+                            break;
+
+
+                          default:
+                            # code...
+
+                            break;
+                        }
+                      }
+                     if($tipodebus=="interno"){
+                     	if($Node->nodeName=="linhabus") {
+                        
                           $linhabus=$Node->nodeValue;
                           //INTERNO
 
@@ -53,7 +90,7 @@
                             $qtdlinhaufrj[2]+=1;
                             break;
                           case 4:
-                            $qtdlinhaufr[3]+=1;
+                            $qtdlinhaufrj[3]+=1;
                             break;
 
 
@@ -62,52 +99,107 @@
 
                             break;
                         }
+                      } 
 
+                      if($Node->nodeName=="hora"){
+                        	$teste+=1;
+                      		$hora=$Node->nodeValue;
+                      		if($hora>=5&&$hora<=12){
+                      			$qtdhorarioin[0]+=1;
+                      		}
+                      		else if($hora>=13&&$hora<=18){
+                      			$qtdhorarioin[1]+=1;
+                      		}
+                      		else if($hora>=19||$hora<=5){
+                      	  		$qtdhorarioin[2]+=1;
+                      		}
+                      	}
+                       
+                  }
+
+
+
+
+
+
+                      if($tipodebus=="convencional") {
+
+                      	if($Node->nodeName=="tipodesituacao") {
+                        
+                          $tipo=$Node->nodeValue;
+                          //EXTERNO
+
+                        switch ((int)$tipo) {
+                          case 1:
+                            $qtdrecex[0]+=1;
+                            # code...
+                            break;
+                          case 2:
+                            $qtdrecex[1]+=1;
+                            break;
+                          case 3:
+                            $qtdrecex[2]+=1;
+                            break;
+                          case 4:
+                            $qtdrecex[3]+=1;
+                            break;
+
+
+                          default:
+                            # code...
+
+                            break;
+                        }
+                      }
+                      	if($Node->nodeName=="linhabus"){
+                          $linhabus=$Node->nodeValue;
+                          //EXTERNO
+                          
+                        switch ((int)$linhabus) {
+                          case 1:
+                            $qtdlinhaex[0]+=1;
+                            # code...
+                            break;
+                          case 2:
+                            $qtdlinhaex[1]+=1;
+                            break;
+                          case 3:
+                            $qtdlinhaex[2]+=1;
+                            break;
+                          case 4:
+                            $qtdlinhaex[3]+=1;
+                            break;
+
+
+                          default:
+                            # code...
+
+                            break;
+                        }
+                    }
+                    if($Node->nodeName=="hora"){
+                      		$hora=$Node->nodeValue;
+                      		if($hora>=5&&$hora<=12){
+                      			$qtdhorarioex[0]+=1;
+                      		}
+                      		else if($hora>=13&&$hora<=18){
+                      			$qtdhorarioex[1]+=1;
+                      		}
+                      		else if($hora>=19||$hora<=5){
+                      	  		$qtdhorarioex[2]+=1;
+                      		}
+                      	}
+
+                }
+                        
+                      	
 
                       } 
              }
-    }
-
-    
-    
- /*
-
-
-
-    if((int)$tipodeonibus==0) {
-      //INTERNO
-     
-      switch ((int)$linhabus) {
-        case 1:
-          $qtdlinhaufrj[0]+=1;  
-          # code...
-          break;
-           case 2:
-          $qtdlinhaufrj[1]+=1;  
-          # code...
-          break;
-           case 3:
-          $qtdlinhaufrj[2]+=1;  
-          # code...
-          break;
-           case 4:
-          $qtdlinhaufrj[3]+=1;  
-          # code...
-          break;
-        
-        default:
-          # code...
-          break;
-      }
-
-
-    }
-
-
-
-*/
-
-
+ 
+			$temp++;
+			$local= 'xml/reclamacoes' . $temp .'.xml';
+}
 ?>
 
 
@@ -120,7 +212,6 @@
 
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
-
       google.load('visualization', '1.0', {'packages':['corechart']});
  
       google.setOnLoadCallback(OnibusExterno);
@@ -131,16 +222,18 @@
 	  google.setOnLoadCallback(HorarioInterno);
 
       function OnibusExterno() {
-
+      	var qtd616 = <?php echo json_encode($qtdlinhaex[1]); ?>; 
+        var qtd485 = <?php echo json_encode($qtdlinhaex[0]); ?>; 
+        var qtd410 = <?php echo json_encode($qtdlinhaex[3]); ?>; 
+        var qtd761 = <?php echo json_encode($qtdlinhaex[2]); ?>; 
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Linhas de Onibus');
         data.addColumn('number', 'Quantidade de Reclamções');
         data.addRows([
-          ['616', 3],
-          ['913', 1],
-          ['485', 1],
-          ['696', 1],
-          ['410T', 2]
+          ['485', qtd485],
+          ['913/616', qtd616],
+          ['761', qtd761],
+          ['410T', qtd410]
         ]);
 
         var options = { 
@@ -161,11 +254,12 @@
       }
 	  function OnibusInterno() {
         
-
+	  	var teste = <?php echo json_encode($teste); ?>;
         var qtdcoppead = <?php echo json_encode($qtdlinhaufrj[0]); ?>; 
         var qtdvila = <?php echo json_encode($qtdlinhaufrj[1]); ?>; 
-        var qtdestacao = <?php echo json_encode($qtdlinhaufrj[0]); ?>; 
-        var qtdalojamento = <?php echo json_encode($qtdlinhaufrj[0]); ?>; 
+        var qtdestacao = <?php echo json_encode($qtdlinhaufrj[2]); ?>; 
+        var qtdalojamento = <?php echo json_encode($qtdlinhaufrj[3]); ?>; 
+        console.log( teste);
 
 
 
@@ -174,10 +268,10 @@
         data.addColumn('string', 'Linhas de Onibus');
         data.addColumn('number', 'Quantidade de Reclamções');
         data.addRows([
-          ['COPPEAD', 3],
-          ['Vila Residencial', 1],
-          ['Estação da UFRJ', 1],
-          ['Alojamento', 1],
+          ['COPPEAD', qtdcoppead],
+          ['Vila Residencial', qtdvila],
+          ['Estação da UFRJ', qtdestacao],
+          ['Alojamento', qtdalojamento],
         ]);
 
         var options = { 
@@ -199,15 +293,19 @@
 	  
 	  
 	  function ReclamacaoExterno() {
+	  	var tipo1 = <?php echo json_encode( $qtdrecex[0]); ?>; 
+        var tipo2 = <?php echo json_encode( $qtdrecex[1]); ?>; 
+        var tipo3 = <?php echo json_encode( $qtdrecex[2]); ?>; 
+        var tipo4 = <?php echo json_encode( $qtdrecex[3]); ?>; 
 
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Motivo de Reclamação');
         data.addColumn('number', 'Quantidade de Reclamções');
         data.addRows([
-          ['Superlotação', 3],
-          ['Imprudencia do Motorista', 1],
-          ['Trajeto Incorreto', 1],
-          ['Outros', 1],
+          ['Superlotação', tipo1],
+          ['Imprudencia do Motorista', tipo2],
+          ['Trajeto Incorreto', tipo3],
+          ['Outros', tipo4],
         ]);
 
         var options = { 
@@ -227,15 +325,18 @@
         chart.draw(data, options);
       }
 	  function ReclamacaoInterno() {
-
+	  	var tipo1 = <?php echo json_encode( $qtdrecin[0]); ?>; 
+        var tipo2 = <?php echo json_encode( $qtdrecin[1]); ?>; 
+        var tipo3 = <?php echo json_encode( $qtdrecin[2]); ?>; 
+        var tipo4 = <?php echo json_encode( $qtdrecin[3]); ?>; 
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Motivo de Reclamação');
         data.addColumn('number', 'Quantidade de Reclamções');
         data.addRows([
-          ['Superlotação', 3],
-          ['Imprudencia do Motorista', 1],
-          ['Trajeto Incorreto', 1],
-          ['Outros', 1],
+          ['Superlotação', tipo1],
+          ['Imprudencia do Motorista', tipo2],
+          ['Trajeto Incorreto', tipo3],
+          ['Outros', tipo4],
         ]);
 
         var options = { 
@@ -255,14 +356,17 @@
         chart.draw(data, options);
       }
 	  function HorarioExterno() {
+	  	var manha= <?php echo json_encode($qtdhorarioex[0]); ?>; 
+        var tarde = <?php echo json_encode($qtdhorarioex[1]); ?>; 
+        var noite = <?php echo json_encode($qtdhorarioex[2]); ?>; 
 
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Horario da Reclamação');
         data.addColumn('number', 'Quantidade de Reclamções');
         data.addRows([
-          ['Manhã', 3],
-          ['Tarde', 1],
-          ['Noite', 1],
+          ['Manhã', manha],
+          ['Tarde', tarde],
+          ['Noite', noite],
         ]);
 
         var options = { 
@@ -283,13 +387,17 @@
       }
 	  function HorarioInterno() {
 
+	  	var manha= <?php echo json_encode($qtdhorarioin[0]); ?>; 
+        var tarde = <?php echo json_encode($qtdhorarioin[1]); ?>; 
+        var noite = <?php echo json_encode($qtdhorarioin[2]); ?>; 
+
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Horario da Reclamação');
         data.addColumn('number', 'Quantidade de Reclamções');
         data.addRows([
-          ['Manhã', 3],
-          ['Tarde', 1],
-          ['Noite', 1],
+          ['Manhã', manha],
+          ['Tarde', tarde],
+          ['Noite', noite],
         ]);
 
         var options = { 
@@ -321,7 +429,7 @@
                 <ul>
                   <li><a href="index.html" >Home</a></li>
                   <li><a href="reclama.php">Reclame Aqui</a></li>
-                  <li><a href="historico.html"class="current">Estatísticas</a></li>
+                  <li><a href="historico.php"class="current">Estatísticas</a></li>
                   <li><a href="contato.html" class="last">Contato</a></li>
                 </ul>
             </div> <!-- end of menu -->
