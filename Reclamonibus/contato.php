@@ -61,7 +61,7 @@ if (!isset($_POST["submit"])) {
     // message lines should not exceed 70 characters (PHP rule), so wrap it
     $message = wordwrap($message, 70);
     // send mail
-    mail("lucas.nunes95@gmail.com",$subject,$message,"Remetente: $from\n");
+    mail("lucas.nunes95@gmail.com",$subject,$message, "Remetente: $from\n");
     echo "Obrigado por seu feedback!";
   }
 }
