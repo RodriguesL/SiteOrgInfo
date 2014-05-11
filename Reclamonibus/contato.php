@@ -41,10 +41,7 @@
                 	<h2>Contato:</h2>
                 	<p>Escreva aqui sua dúvida, reclamação, sugestão ou xingamento. Sempre queremos ouvir a sua voz. Você é o pilar do nosso trabalho. Nós queremos te ouvir.</p>
                 <div id="contact_form">
-                  <?php
-// display form if user has not clicked submit
-if (!isset($_POST["submit"])) {
-  ?>
+                  
   <form method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
   Nome:<br> <input type="text" name="remetente"><br>
   E-mail:<br> <input type="text" name="email"><br>
@@ -53,8 +50,9 @@ if (!isset($_POST["submit"])) {
   <input type="submit" name="submit" value="Enviar">
   </form>
   <?php 
-} else {    // the user has submitted the form
+// the user has submitted the form
   // Check if the "from" input field is filled out
+  if (isset($_POST["submit"])) {
   if (isset($_POST["remetente"])) {
     $from = $_POST["remetente"]; // sender
 	$email = $_POST["email"];
@@ -65,6 +63,7 @@ if (!isset($_POST["submit"])) {
     // send mail
     mail("reclamonibus@gmail.com",$subject,"Remetente: $from ($email)\n\n" . "Mensagem: " .  $message, "Nome: $from\n");
     echo "Obrigado por seu feedback!";
+
   }
 }
 ?>
