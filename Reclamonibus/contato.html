@@ -26,10 +26,9 @@
         
         <div id="middle">
             <div id="mid_left">
-                <div id="mid_title">Este é o nosso portal de reclamações.</div>
-                <p>Cansado de sair esgotado da aula e ainda ter que voltar pra casa em pé?</p
-                >
-				<p>Cansado de motoristas que te fazem se sentir no Rally Paris-Dakar?</p>
+                <div id="mid_title">Este é o nosso site de ônibus</div>
+                <p>Este parágrafo diz algo muito importante sobre o nosso site.</p>
+				<p>E esse seduz o usuário a fazer todas as coisas que a gente quer que ele faça.</p>
              
             </div>
             <img src="images/bus.png" alt="bus" />
@@ -42,39 +41,28 @@
                 	<h2>Contato:</h2>
                 	<p>Escreva aqui sua dúvida, reclamação, sugestão ou xingamento. Sempre queremos ouvir a sua voz. Você é o pilar do nosso trabalho. Nós queremos te ouvir.</p>
                 <div id="contact_form">
-                  
+                  <?php
+// display form if user has not clicked submit
+if (!isset($_POST["submit"])) {
+  ?>
   <form method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
-  Nome:<br> <input type="text" name="remetente"><br>
-  E-mail:<br> <input type="text" name="email"><br>
-  Assunto:<br> <input type="text" name="assunto"><br>
-  Mensagem:<br> <textarea rows="10" cols="40" name="mensagem"></textarea><br>
+  Remetente: <input type="text" name="remetente"><br>
+  Assunto: <input type="text" name="assunto"><br>
+  Mensagem: <textarea rows="10" cols="40" name="mensagem"></textarea><br>
   <input type="submit" name="submit" value="Enviar">
   </form>
   <?php 
-// the user has submitted the form
+} else {    // the user has submitted the form
   // Check if the "from" input field is filled out
-  $contador=0;
-  if (isset($_POST["submit"])) {
-  if (!empty($_POST["remetente"])&&!empty($_POST["email"])&&!empty($_POST["mensagem"])&&preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$_POST["email"])&&$contador!=1) {
+  if (isset($_POST["remetente"])) {
     $from = $_POST["remetente"]; // sender
-	$email = $_POST["email"];
     $subject = $_POST["assunto"];
     $message = $_POST["mensagem"];
     // message lines should not exceed 70 characters (PHP rule), so wrap it
     $message = wordwrap($message, 70);
     // send mail
-    mail("reclamonibus@gmail.com",$subject,"Remetente: $from ($email)\n\n" . "Mensagem: " .  $message, "Nome: $from\n");
+    mail("lucas.nunes95@gmail.com",$subject,$message,"Remetente: $from\n");
     echo "Obrigado por seu feedback!";
-    $contador=1;
-
-  }
-  else{
-  	if($contador==0){
-  		echo "Preenchimento incorreto" ;
-  	}
-  	else{
-  		$contador=0;
-  	}
   }
 }
 ?>

@@ -489,7 +489,7 @@
 </div>     
 <div id="footer_wrapper">
     <div id="footer">
-       Feito por Zueira iLtda
+       Feito por Daniel Assumpção, João Vitor Oliveira e Lucas Rodrigues
         <div class="cleaner"></div>
     </div>
 </div>

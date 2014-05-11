@@ -131,7 +131,7 @@ h6 { font-size: 12px; margin: 0 0 5px; padding: 0; }
 }
 
 
-#mid_title { font-size: 36px; font-weight: 400; color: #9ecefa; margin-bottom: 30px;  }
+#mid_title { font-size: 36px; font-weight: 400; color: #9ecefa; margin-bottom: 30px; line-height: 35px;  }
 #mid_left { float: left; margin-left: 30px; margin-top: 30px; width: 480px; }
 #mid_left p { font-size: 18px; color: #c9c5cd; margin-bottom: 20px; }
 #mid_left .viewall { clear: both; float: right; display: block; margin-top: 20px; width: 136px; height: 50px;}
