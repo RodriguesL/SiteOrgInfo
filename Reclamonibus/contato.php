@@ -18,7 +18,7 @@
                 <ul>
                   <li><a href="index.html">Home</a></li>
                   <li><a href="reclama.php">Reclame Aqui</a></li>
-                  <li><a href="historico.html">Estatísticas</a></li>
+                  <li><a href="historico.php">Estatísticas</a></li>
                   <li><a href="contato.php" class="last current">Contato</a></li>
                 </ul>
             </div> <!-- end of menu -->
