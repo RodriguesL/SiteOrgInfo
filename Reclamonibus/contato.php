@@ -70,7 +70,7 @@
   }
   else{
   	if($contador==0){
-  		echo "Preenchimento incorreto" ;
+  		echo "Preenchimento incorreto";
   	}
   	else{
   		$contador=0;

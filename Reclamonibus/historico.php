@@ -647,7 +647,7 @@
 </div>     
 <div id="footer_wrapper">
     <div id="footer">
-       Feito por Daniel Assumpção, João Vitor Oliveira e Lucas Rodrigues
+       Feito por Daniel Assumpção, João Vitor de Oliveira e Lucas Rodrigues
         <div class="cleaner"></div>
     </div>
 </div>
