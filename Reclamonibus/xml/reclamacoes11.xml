@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<reclamacao>
+  <tipodebus>convencional</tipodebus>
+  <nome>Teste</nome>
+  <sobrenome>Bolado</sobrenome>
+  <email>jao@gol.com</email>
+  <gender>masculino</gender>
+  <tipodesituacao>4</tipodesituacao>
+  <linhabus>2</linhabus>
+  <idonibus>(abcdef)</idonibus>
+  <dia>2</dia>
+  <mes>05</mes>
+  <ano>2014</ano>
+  <hora>08</hora>
+  <minuto>20</minuto>
+  <descricaooutros>Malandragem teste auihjdu lorem ipsum</descricaooutros>
+</reclamacao>

@@ -134,7 +134,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    }
    
    if (empty($_POST["element_4"])) {
-     $comment = "";
+     $textooutros = "";
    } else {
      $textooutros = test_input($_POST["element_4"]);
    }
@@ -534,6 +534,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$nodeEleven= $dom->createElement('hora');
 		$nodeTwelve= $dom->createElement('minuto');
 		$node1= $dom->createElement('tipodebus');
+		$node14= $dom->createElement('descricaooutros');
 		 
 		//criados os elementos, vamos adicionar um valor para cada um deles
 		$nodeOneTxt = $dom->createTextNode($nome);
@@ -549,7 +550,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$nodeElevenTxt= $dom->createTextNode($horario[0]);
 		$nodeTwelveTxt= $dom->createTextNode($horario[1]);
 		$node1Txt=$dom->createTextNode($tipodebus);
-		 
+		$node14Txt= $dom->createTextNode($textooutros);
 		
 		$nodeOne->appendChild($nodeOneTxt);
 		$nodeTwo->appendChild($nodeTwoTxt);
@@ -564,6 +565,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$nodeEleven->appendChild($nodeElevenTxt);
 		$nodeTwelve->appendChild($nodeTwelveTxt);
 		$node1->appendChild($node1Txt);
+		$node14->appendChild($node14Txt);
+
 
 
 		$root->appendChild($node1);
@@ -579,6 +582,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$root->appendChild($nodeTen);
 		$root->appendChild($nodeEleven);
 		$root->appendChild($nodeTwelve);
+		$root->appendChild($node14);
 		
 
 		$dom->appendChild($root);

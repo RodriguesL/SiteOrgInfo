@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<reclamacao>
+  <tipodebus>interno</tipodebus>
+  <nome>Maria</nome>
+  <sobrenome>Perdai</sobrenome>
+  <email>jfajfa@bol.com</email>
+  <gender>feminino</gender>
+  <tipodesituacao>6</tipodesituacao>
+  <linhabus>3</linhabus>
+  <idonibus>affafa</idonibus>
+  <dia>3</dia>
+  <mes>04</mes>
+  <ano>2014</ano>
+  <hora>10</hora>
+  <minuto>15</minuto>
+</reclamacao>
