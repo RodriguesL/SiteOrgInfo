@@ -12,8 +12,8 @@
     //DEFININDO VARIAVEIS QUE RECEBERÃO OS DADOS ESTATISTICOS
     $qtdhorarioin=array(0,0,0);
     $qtdhorarioex=array(0,0,0);     //(MANHA, TARDE,NOITE)
-    $qtdlinhaufrj=array(0,0,0,0); 
-    $qtdlinhaex=array(0,0,0,0,0,0,0,0,0);  
+    $qtdlinhaufrj=array(0,0,0,0,0,0,0); 
+    $qtdlinhaex=array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);  
     $qtdrecex=array(0,0,0,0,0,0,0);
     $qtdrecin=array(0,0,0,0,0,0,0);
     $tipodebus="vazio";
@@ -101,6 +101,17 @@
                           case 4:
                             $qtdlinhaufrj[3]+=1;
                             break;
+                          case 5:
+                            $qtdlinhaufrj[4]+=1;
+                            break;
+                          case 6:
+                            $qtdlinhaufrj[5]+=1;
+                            break;
+                          case 7:
+                            $qtdlinhaufrj[6]+=1;
+                            break;
+                         
+
 
 
                           default:
@@ -200,8 +211,56 @@
                           case 9:
                             $qtdlinhaex[8]+=1;
                             break;  
-    
-
+                          case 10:
+                            $qtdlinhaex[9]+=1;
+                            # code...
+                            break;
+                          case 11:
+                            $qtdlinhaex[10]+=1;
+                            break;
+                          case 12:
+                            $qtdlinhaex[11]+=1;
+                            break;
+                          case 13:
+                            $qtdlinhaex[12]+=1;
+                            break;
+                           case 14:
+                            $qtdlinhaex[13]+=1;
+                            break;
+                          case 15:
+                            $qtdlinhaex[14]+=1;
+                            break;
+                          case 16:
+                            $qtdlinhaex[15]+=1;
+                            break;
+                          case 17:
+                            $qtdlinhaex[16]+=1;
+                            break;      
+                          case 18:
+                            $qtdlinhaex[17]+=1;
+                            break;  
+                          case 19:
+                            $qtdlinhaex[18]+=1;
+                            break;
+                          case 20:
+                            $qtdlinhaex[19]+=1;
+                            break;      
+                          case 21:
+                            $qtdlinhaex[20]+=1;
+                            break;
+                          case 22:
+                            $qtdlinhaex[21]+=1;
+                            break;  
+                          case 23:
+                            $qtdlinhaex[22]+=1;
+                            break;  
+                          case 24:
+                            $qtdlinhaex[23]+=1;
+                            break;   
+                          case 25:
+                            $qtdlinhaex[24]+=1;
+                            break;           
+                              
                           default:
                             # code...
 
@@ -260,10 +319,24 @@
         var qtd111c= <?php echo json_encode($qtdlinhaex[4]); ?>;
         var qtd945= <?php echo json_encode($qtdlinhaex[5]); ?>;
         var qtd486= <?php echo json_encode($qtdlinhaex[6]); ?>;
-        var qtdpdbbolada = <?php echo json_encode($qtdlinhaex[7]); ?>;
+        var qtdilhaavhue = <?php echo json_encode($qtdlinhaex[7]); ?>;
         var qtd905 = <?php echo json_encode($qtdlinhaex[8]); ?>;
-
-
+        var qtdilhalv = <?php echo json_encode($qtdlinhaex[9]); ?>;
+        var qtd386b = <?php echo json_encode($qtdlinhaex[10]); ?>;
+        var qtd634 = <?php echo json_encode($qtdlinhaex[11]); ?>;
+        var qtd696 = <?php echo json_encode($qtdlinhaex[12]); ?>;
+        var qtd901 = <?php echo json_encode($qtdlinhaex[13]); ?>;
+        var qtd910 = <?php echo json_encode($qtdlinhaex[14]); ?>;
+        var qtd911 = <?php echo json_encode($qtdlinhaex[15]); ?>;
+        var qtd914 = <?php echo json_encode($qtdlinhaex[16]); ?>;
+        var qtd915 = <?php echo json_encode($qtdlinhaex[17]); ?>;
+        var qtd933 = <?php echo json_encode($qtdlinhaex[18]); ?>;
+        var qtd936 = <?php echo json_encode($qtdlinhaex[19]); ?>;
+        var qtd932 = <?php echo json_encode($qtdlinhaex[20]); ?>;
+        var qtd417c = <?php echo json_encode($qtdlinhaex[21]); ?>;  
+        var qtd956a = <?php echo json_encode($qtdlinhaex[22]); ?>;
+        var qtd956b = <?php echo json_encode($qtdlinhaex[23]); ?>;
+        var qtds06 = <?php echo json_encode($qtdlinhaex[24]); ?>;
 
 
         var data = new google.visualization.DataTable();
@@ -277,8 +350,24 @@
           ['111C', qtd111c],
           ['945', qtd945],
           ['486', qtd486],
-          ['322/324/326/328',qtdpdbbolada],
-          ['905' , qtd905]
+          ['322/324/326/328',qtdilhaavhue],
+          ['321/323/325/327',qtdilhalv],
+          ['386B',qtd386b],
+          ['905' , qtd905],
+          ['634/635',qtd634],
+          ['696',qtd696],
+          ['901',qtd901],
+          ['910',qtd910],
+          ['911',qtd911],
+          ['914',qtd914],
+          ['915',qtd915],
+          ['933',qtd933],
+          ['936',qtd936],
+          ['932',qtd932],
+          ['417C',qtd417c],
+          ['956A',qtd956a],
+          ['956B',qtd956b],
+          ['qtds06',qtds06]
 
         ]);
 
@@ -304,8 +393,12 @@
         var qtdcoppead = <?php echo json_encode($qtdlinhaufrj[0]); ?>; 
         var qtdvila = <?php echo json_encode($qtdlinhaufrj[1]); ?>; 
         var qtdestacao = <?php echo json_encode($qtdlinhaufrj[2]); ?>; 
-        var qtdalojamento = <?php echo json_encode($qtdlinhaufrj[3]); ?>; 
-        console.log( teste);
+        var qtdalojamento = <?php echo json_encode($qtdlinhaufrj[3]); ?>;
+        var qtdpraia =   <?php echo json_encode($qtdlinhaufrj[4]); ?>;
+        var qtdxv =  <?php echo json_encode($qtdlinhaufrj[5]); ?>;
+        var qtdxerem =  <?php echo json_encode($qtdlinhaufrj[6]); ?>;
+
+        //console.log( teste);
 
 
 
@@ -318,6 +411,9 @@
           ['Vila Residencial', qtdvila],
           ['Estação da UFRJ', qtdestacao],
           ['Alojamento', qtdalojamento],
+          ['Praia Vermelha',qtdpraia],
+          ['Praça XV', qtdxv],
+          ['Xerem',qtdxerem]
         ]);
 
         var options = { 

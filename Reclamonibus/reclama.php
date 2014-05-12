@@ -356,16 +356,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			<option value="" selected="selected"></option>
 			<option value="1" >485 - PENHA X GENERAL OSÓRIO (VIA FUNDAO)</option>
 			<option value="2" >616/913 - FUNDÃO X NOVA AMÉRICA (DEL CASTILHO)</option>
-			<option value="3" >761D - CHARITAS X GIG (VIA FUNDAO)</option>
+			<option value="3" >761D - CHARITAS X GIG(AIRJ) (VIA FUNDAO)</option>
 			<option value="4" >410T/420T - BAIXADA FLUMINENSE x TERMINAL ALVORADA</option>
-			<option value="5" >111C - DUQUE DE CAXIAS X CENTRAL </option>
+			<option value="5" >111C/113C - DUQUE DE CAXIAS X CENTRAL </option>
 			<option value="6" >945 - PAVUNA X CIDADE UNIVERSITÁRIA </option>
 			<option value="7" >486 - FUNDAO x GENERAL OSÓRIO (VIA AV.BRASIL) </option>
-			<option value="8" >322/324/326/328 - CASTELO X ILHA DO GOVERNADOR (VIA UFRJ) </option>
+			<option value="8" >322/324/326/328/329 - CASTELO X ILHA DO GOVERNADOR (VIA AV.BRASIL) </option>
+			<option value="10">321/323/325/327 - CASTELO X ILHA DO GOVERNADOR (VIA LINHA VERMELHA) </option>
 			<option value="9" >905 - BONSUCESSO X IRAJÁ (VIA CIDADE UNIVERSITÁRIA) </option>
+			<option value="11">386B ANCHIETA X CIDADE UNIVERSITÁRIA </option>
+			<option value="12">634/635 - SAENS PEÑA X BANANAL </option>
+			<option value="13">696 - MÉIER X PRAIA DO DENDE </option>
+			<option value="14">901 - BONSUCESSO X ILHA DO GOVERNADOR </option>
+			<option value="15">910 - MADUREIRA X BANANAL </option>
+			<option value="16">911 - BONSUCESSO X CIDADE UNIVERSITÁRIA </option>
+			<option value="17">914 - VIGÁRIO GERAL X FREGUESIA </option>
+			<option value="18">915 - BONSUCESSO X GIG(AIRJ) </option>
+			<option value="19">933 - BANGU X CIDADE UNIVERSITÁRIA</option>
+			<option value="20">936 - C.GRANDE x CIDADE UNIVERSITÁRIA</option>
+			<option value="21">932 - PENHA X CIDADE UNIVERSITÁRIA</option>
+			<option value="22">417C - VILAR DOS TELES X CACUIA </option>
+			<option value="23">956A - INVERNADA DE OLARIA X CIDADE UNIVERSIÁRIA</option>
+			<option value="24">956B - PENHA X HOSPITAL UNIVERSITÁRIO</option>
+			<option value="25">S-06 - CIDADE DE DEUS X CIDADE UNIVERSITÁRIA</option>
+
+
 
 
 		</select>
+
 		</div><p class="guidelines" id="guide_8"><small>Selecione a linha de onibus, clicando na lista e selecionando a mesma em seguida.</small></p> 
 		</li>		
 		</div>
@@ -379,6 +398,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			<option value="2" >VILA RESIDENCIAL</option>
 			<option value="3" >ESTAÇÃO DA UFRJ</option>
 			<option value="4" >ALOJAMENTO</option>
+			<option value="5" >CIDADE UNIVERSITÁRIA X PRAIA VERMELHA</option>
+			<option value="6" >CIDADE UNIVERSITÁRIA X PRAÇA XV</option>
+			<option value="7" >CIDADE UNIVERSITÁRIA X PÓLO XERÉM</option>
 
 		</select>
 		</div><p class="guidelines" id="guide_9"><small>Selecione a linha de onibus, clicando na lista e selecionando a mesma em seguida.</small></p> 
