@@ -8,7 +8,43 @@
 </style>
 </head>
 <body>
-
+<?php 
+// the user has submitted the form
+  // Check if the "from" input field is filled out
+  	
+  
+ $from="";
+ $email="";
+ $pode=false;	  
+		  
+	
+  if ($_SERVER["REQUEST_METHOD"]) {
+	  
+  if (!empty($_POST["remetente"])&&!empty($_POST["email"])&&!empty($_POST["mensagem"])&&preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$_POST["email"])) {
+    $from = $_POST["remetente"]; // sender
+	$email = $_POST["email"];
+    $subject = $_POST["assunto"];
+    $message = $_POST["mensagem"];
+	$tempmensagem = $message;
+    // message lines should not exceed 70 characters (PHP rule), so wrap it
+    $message = wordwrap($message, 70);
+    // send mail
+    mail("reclamonibus@gmail.com",$subject,"Remetente: $from ($email)\n\n" . "Mensagem: " .  $message, "Nome: $from\n");
+    
+	
+	
+	$_POST["remetente"]="";
+	$_POST["email"] = "";
+	
+	$_POST["assunto"] = "";
+	$_POST["mensagem"] = "";
+	$pode=true;
+	
+	
+  }
+}
+  
+?>
 <div id="body_wrapper">
 	<div id="wrapper">
     	
@@ -44,40 +80,19 @@
                 <div id="contact_form">
                   
   <form method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
-  Nome:<br> <input type="text" name="remetente"><br>
-  E-mail:<br> <input type="text" name="email"><br>
+  Nome:<br> <input type="text" name="remetente" value="<?php echo $from; ?>"><br>
+  E-mail:<br> <input type="text" name="email" value="<?php echo $email; ?>"><br>
   Assunto:<br> <input type="text" name="assunto"><br>
   Mensagem:<br> <textarea rows="10" cols="40" name="mensagem"></textarea><br>
   <input type="submit" name="submit" value="Enviar">
   </form>
-  <?php 
-// the user has submitted the form
-  // Check if the "from" input field is filled out
-  $contador=0;
-  if (isset($_POST["submit"])) {
-  if (!empty($_POST["remetente"])&&!empty($_POST["email"])&&!empty($_POST["mensagem"])&&preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$_POST["email"])&&$contador!=1) {
-    $from = $_POST["remetente"]; // sender
-	$email = $_POST["email"];
-    $subject = $_POST["assunto"];
-    $message = $_POST["mensagem"];
-    // message lines should not exceed 70 characters (PHP rule), so wrap it
-    $message = wordwrap($message, 70);
-    // send mail
-    mail("reclamonibus@gmail.com",$subject,"Remetente: $from ($email)\n\n" . "Mensagem: " .  $message, "Nome: $from\n");
-    echo "Obrigado por seu feedback!";
-    $contador=1;
-
-  }
-  else{
-  	if($contador==0){
-  		echo "Preenchimento incorreto";
-  	}
-  	else{
-  		$contador=0;
-  	}
-  }
-}
-?>
+  <?php
+  	if($pode){
+		echo '<b>Obrigado por seu feedback!</b>';
+		$pode=false;
+	}
+  ?>
+  
                 </div>
  </div>
 </div> <!-- end of main -->
@@ -98,7 +113,7 @@
 </div>
 <div id="footer_wrapper">
     <div id="footer">
-       Feito por Daniel Assumpção, João Vitor Oliveira e Lucas Rodrigues
+       Feito por Daniel Assumpção, João Vitor de Oliveira e Lucas Rodrigues
         <div class="cleaner"></div>
     </div>
 </div>

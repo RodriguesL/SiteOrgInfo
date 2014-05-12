@@ -11,6 +11,12 @@ body {
 	line-height: 1.5em; 
 }
 
+.feedback {
+	
+	margin-left:14cm;
+	
+}
+
 a, a:link, a:visited { color: #2081da; font-weight: normal; text-decoration: none }
 a:hover { text-decoration: underline; }
 
