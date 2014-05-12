@@ -388,7 +388,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		<span>
 		<div class="subir">
 		<li id="li_5" >
-		<label class="description" for="element_15">ID do ônibus </label>
+		<label class="description" for="element_15">ID do ônibus (Opcional)</label>
 		
 		<div>
 			<input id="element_5" name="element_15" class="element text medium" type="text" maxlength="255" value="<?php echo $idonibus;?>"/> 
